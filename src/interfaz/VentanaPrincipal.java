@@ -6,12 +6,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import aplicacion.Controlador;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPrincipal extends JFrame {
 	
@@ -62,6 +68,17 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.add(comboBox);
 		
 		JButton button = new JButton("ACEPTAR");
+		button.addActionListener(new ActionListener() {
+			
+		public void actionPerformed(ActionEvent arg0) {
+			Controlador controlador = new Controlador();
+			VentanaSalida ventanaSalida = new VentanaSalida(controlador.getListaPuntos());
+			controlador.generarPuntos(comboBox.getSelectedIndex()+1);
+			setVisible(false);
+			ventanaSalida.show();
+		}
+		
+		});
 		button.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
 		button.setBounds(172, 69, 89, 23);
 		contentPane.add(button);

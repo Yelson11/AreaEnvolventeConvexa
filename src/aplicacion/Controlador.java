@@ -36,6 +36,9 @@ public class Controlador {
 			}
 		};
 	}
-	
+
+	public ArrayList<Punto> getListaPuntos() {
+		return listaPuntos;
+	}	
 	
 }
