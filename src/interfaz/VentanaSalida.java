@@ -15,6 +15,7 @@ import aplicacion.CONSTANTES;
 import aplicacion.Punto;
 
 import javax.swing.JButton;
+import javax.swing.JList;
 
 public class VentanaSalida extends JFrame implements CONSTANTES{
 
@@ -44,19 +45,24 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 	 */
 	public VentanaSalida(ArrayList<Punto> pPuntos) {
 		puntos = pPuntos;
-		setBounds(0, 0, 407, 371);
+		setBounds(0, 0, 520, 570);
 		setBackground(new Color(200,0,180));
 		getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("OK");
-		btnNewButton.setBounds(183, 298, 89, 23);
+		btnNewButton.setBounds(361, 497, 89, 23);
 		getContentPane().add(btnNewButton);
+		
+		JList list = new JList();
+		list.setBounds(361, 437, 89, 23);
+		getContentPane().add(list);
 		setVisible(true);
 	}
 
 	//Metodo que llama a todo cuando se inicia la ventana
 	public void paint(Graphics g)
 	{
+		pintarSemiejes(g);
 		pintarPuntos(puntos, g);
 	}
 	
@@ -68,7 +74,22 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 	 
 	public void pintarPuntos(ArrayList<Punto> pPuntos, Graphics g) {
 		for (int i = 0; i < pPuntos.size(); i++) {
-			drawCircle(g, pPuntos.get(i).getPosX() * ESCALA + ACOMODO_EN_X, pPuntos.get(i).getPosY()  * ESCALA + ACOMODO_EN_Y, 2);
+		
+			drawCircle(g, pPuntos.get(i).getPosX() * ESCALA + ACOMODO_EN_X + 1, pPuntos.get(i).getPosY()  * ESCALA + ACOMODO_EN_Y, 2);
+			}
+			//
+		
+	}
+	
+	public void pintarSemiejes(Graphics g) {
+		//Pinta las rectas
+		g.drawLine(ACOMODO_EN_X-4, ACOMODO_EN_Y, ACOMODO_EN_X-4, 450);
+		g.drawLine(ACOMODO_EN_X-4, 450, 450, 450);
+		for (int i = 0; i < 10; i++) {
+			g.drawLine(ACOMODO_EN_X - 8, i * ACOMODO_EN_Y, ACOMODO_EN_X-4, i * ACOMODO_EN_Y);
+		}
+		for (int i = 1; i < 10; i++) {
+			g.drawLine(i * ACOMODO_EN_X-4, 450 , i * ACOMODO_EN_X-4, 454);
 		}
 	}
 }

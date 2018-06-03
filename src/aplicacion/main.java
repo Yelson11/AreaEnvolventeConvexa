@@ -10,5 +10,4 @@ public class main {
 		VentanaPrincipal principal = new VentanaPrincipal();
 		principal.show();
 	}
-
 }
