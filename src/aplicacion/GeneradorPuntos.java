@@ -11,8 +11,8 @@ public class GeneradorPuntos {
 	
 	public ArrayList<Punto> generarPosiblesPuntos(){
 		ArrayList<Punto> listaPuntos = new ArrayList<>();	
-		for (int i = 0; i <= 80; i++) {
-			for(int j = 0; j<= 80; j++) {
+		for (int i = 1; i <= 80; i++) {
+			for(int j = 1; j<= 80; j++) {
 				Punto nuevo = new Punto(i,j);
 				listaPuntos.add(nuevo);
 			}

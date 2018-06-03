@@ -66,7 +66,7 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 	{
 		pintarNumeros(g);
 		pintarSemiejes(g);
-		//pintarPuntos(puntos, g);
+		pintarPuntos(puntos, g);
 	}
 	
 	public void drawCircle(Graphics g, int x, int y, int radius) {
@@ -77,6 +77,11 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 	 
 	public void pintarPuntos(ArrayList<Punto> pPuntos, Graphics g) {
 		for (int i = 0; i < pPuntos.size(); i++) {
+			System.out.print("Par(");
+			System.out.print(pPuntos.get(i).getPosX());
+			System.out.print(",");
+			System.out.print(pPuntos.get(i).getPosY());
+			System.out.println(")");
 			drawCircle(g, pPuntos.get(i).getPosX() * ESCALA + ACOMODO_EN_X + 1, pPuntos.get(i).getPosY()  * ESCALA + ACOMODO_EN_Y, 2);
 		}
 	}
@@ -96,15 +101,13 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 	}
 	
 	public void pintarNumeros(Graphics g) {
-		Dimension d = this.getPreferredSize();
 		int fontSize = 10;
 		g.setFont(new Font("Arial", Font.PLAIN, fontSize));
-		for (int i = 0; i < 10; i++) {
-			g.drawString(i*10 + "", ACOMODO_EN_X - 12, i * ACOMODO_EN_Y);
-		}
 		for (int i = 1; i < 10; i++) {
-			g.drawLine(i * ACOMODO_EN_X-4, 450 , i * ACOMODO_EN_X-4, 454);
+			g.drawString((90-i*10) + "", ACOMODO_EN_X - 23, i * ACOMODO_EN_Y +5);
 		}
-		g.drawString("12345678900", 100, 200);
+		for (int i = 0; i < 10; i++) {
+			g.drawString((i*10)-10 + "", i * ACOMODO_EN_X - 5, ACOMODO_EN_Y + 420);
+		}
 	}
 }
