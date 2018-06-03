@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -53,10 +54,9 @@ public class VentanaSalida extends JFrame {
 	}
 	 public void paint(Graphics g)
 	    {
-		 g.drawLine(50,50,200,50);
-		 g.drawLine(50,50,50,200);
-		 g.drawLine(200,50,200,200);
-		 g.drawLine(50,200,200,200);
+		 Graphics2D g2d = (Graphics2D)g;
+		 g2d.drawOval(10, 10, 1, 1);
+//		 g.drawLine(50,50,50,50);
 	    }
 
 }

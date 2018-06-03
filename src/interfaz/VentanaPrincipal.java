@@ -14,7 +14,8 @@ import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
 public class VentanaPrincipal extends JFrame {
-
+	
+	private int cantidadPuntos;
 	private JPanel contentPane;
 
 	/**
@@ -64,6 +65,10 @@ public class VentanaPrincipal extends JFrame {
 		button.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
 		button.setBounds(172, 69, 89, 23);
 		contentPane.add(button);
+	}
+	
+	public int getCantidadPuntos() {
+		return cantidadPuntos;
 	}
 
 }
