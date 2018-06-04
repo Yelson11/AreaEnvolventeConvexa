@@ -2,6 +2,7 @@ package aplicacion;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Vector;
 
 import interfaz.*;
 
@@ -12,13 +13,22 @@ public class Controlador {
 	private CalculadorArea calculador;
 	private GeneradorPuntos generador;
 	private ArrayList<Punto> listaPuntos;
+	static Controlador controlador;
 	
-	public Controlador() {
+	private Controlador() {
 		calculador = new CalculadorArea();
 		generador = new GeneradorPuntos();
 		listaPuntos = new ArrayList<>();
 	}
 	
+	public static Controlador getInstance() {
+		if(controlador == null) {
+			return new Controlador();
+		}
+		else {
+			return controlador;
+		}
+	}
 	//Genera los puntos aleatoriamente
 	public void generarPuntos(int pCantidad) {
 		ArrayList<Punto> posiblesPuntos = generador.getListaPosiblesPuntos();
@@ -39,6 +49,12 @@ public class Controlador {
 
 	public ArrayList<Punto> getListaPuntos() {
 		return listaPuntos;
-	}	
+	}
 	
+	public Vector<Punto> ladosDelPoligono(){
+		Vector<Punto> vector;
+		ArrayList<Punto> array = generador.getListaPosiblesPuntos();
+		vector = calculador.ConvertirHull(array, array.size());
+		return vector;
+	}
 }

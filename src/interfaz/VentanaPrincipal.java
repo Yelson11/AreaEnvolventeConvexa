@@ -71,7 +71,7 @@ public class VentanaPrincipal extends JFrame {
 		button.addActionListener(new ActionListener() {
 			
 		public void actionPerformed(ActionEvent arg0) {
-			Controlador controlador = new Controlador();
+			Controlador controlador = Controlador.getInstance();
 			VentanaSalida ventanaSalida = new VentanaSalida(controlador.getListaPuntos());
 			controlador.generarPuntos(comboBox.getSelectedIndex()+1);
 			setVisible(false);
