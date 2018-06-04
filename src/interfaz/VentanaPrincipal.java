@@ -71,10 +71,15 @@ public class VentanaPrincipal extends JFrame {
 		button.addActionListener(new ActionListener() {
 			
 		public void actionPerformed(ActionEvent arg0) {
-			Controlador controlador = Controlador.getInstance();
+			Controlador controlador = Controlador.getInstance(comboBox.getSelectedIndex()+1);
 			VentanaSalida ventanaSalida = new VentanaSalida(controlador.getListaPuntos());
-			controlador.generarPuntos(comboBox.getSelectedIndex()+1);
 			setVisible(false);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			ventanaSalida.show();
 		}
 		

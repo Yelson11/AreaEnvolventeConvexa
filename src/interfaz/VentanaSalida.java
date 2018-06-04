@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class VentanaSalida extends JFrame implements CONSTANTES{
 
@@ -62,7 +63,7 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 		//setBackground(new Color(200,0,180));
 		getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("OK");
+		JButton btnNewButton = new JButton("VER");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
 				JComboBox<String> comboBox = new JComboBox();
@@ -73,11 +74,15 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 					comboBox.addItem(n);
 				}
 				getContentPane().add(comboBox);
-				comboBox.show();
+				comboBox.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(361, 497, 89, 23);
+		btnNewButton.setBounds(21, 468, 89, 23);
 		getContentPane().add(btnNewButton);
+		
+		JLabel lblVerPosicinDe = new JLabel("Ver posición de los puntos generados ------>");
+		lblVerPosicinDe.setBounds(119, 472, 220, 14);
+		getContentPane().add(lblVerPosicinDe);
 
 		
 	}
@@ -85,11 +90,11 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 	//Metodo que llama a todo cuando se inicia la ventana
 	public void paint(Graphics g)
 	{
-		Controlador controlador = Controlador.getInstance();
-		pintarNumeros(g);
+		Controlador controlador = Controlador.getInstance(0);
+		//pintarNumeros(g);
 		pintarSemiejes(g);
 		pintarPuntos(puntos, g);
-		pintarPoligono(controlador.ladosDelPoligono(), g);
+		pintarPoligono(controlador.getListaPuntos(), g);
 	}
 	
 	public void drawCircle(Graphics g, int x, int y, int radius) {
@@ -129,9 +134,10 @@ public class VentanaSalida extends JFrame implements CONSTANTES{
 		}
 	}
 	
-	public void pintarPoligono(Vector<Punto> pPuntos, Graphics g) {
+	public void pintarPoligono(ArrayList<Punto> pPuntos, Graphics g) {
 		for (int i=0; i < pPuntos.size()-1; i++) {
-			g.drawLine(pPuntos.get(i).getPosX(),pPuntos.get(i).getPosX() , pPuntos.get(i+1).getPosX(), pPuntos.get(i+1).getPosY());
+			g.setColor(Color.BLACK);
+			g.drawLine(pPuntos.get(i).getPosX() * ESCALA + ACOMODO_EN_X - 1, 400 -pPuntos.get(i).getPosY() * ESCALA + ACOMODO_EN_Y ,pPuntos.get(i+1).getPosX()* ESCALA + ACOMODO_EN_X - 1, 400 - pPuntos.get(i+1).getPosY()* ESCALA + ACOMODO_EN_Y);
 		}
 	}
 }
